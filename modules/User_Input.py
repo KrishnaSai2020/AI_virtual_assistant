@@ -1,18 +1,20 @@
-import SpeechRecognition as Sr
+import speech_recognition as sr
 from modules.AI_Speech import speak
 
 
-def get_user_command():
-    r = Sr.Recognizer()
-    with Sr.Microphone() as source:
-        print("Listening...")
-        audio = r.listen(source)
+def get_command(self):
+    r = sr.Recognizer()
+    mic = sr.Microphone(device_index=1)
+    with mic as s:
+        audio = r.listen(s, timeout=5)
+        r.adjust_for_ambient_noise(s)
 
-        try:
-            command = r.recognize_google(audio, language='en-UK')
-            print(f"{command}\n")
+    try:
+        speech = r.recognize_google(audio)
+        return speech
 
-        except Exception as e:
-            speak("Pardon me, please say that again")
-            return "None"
-        return command
+    except sr.UnknownValueError:
+        speak("please try again,")
+
+    except sr.WaitTimeoutError as e:
+        speak("please try again")

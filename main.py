@@ -1,26 +1,23 @@
-from Run_Commands import run_commands
-from modules.User_Input import get_user_command
-from Skills import greet, search_wikipedia, youtube
-from .modules.AI_Speech import speak
+from tkinter import *
+from modules.AI_Speech import speak
+from modules.User_Input import get_command
 
-if __name__ == '__main__':
-    print("Loading your AI personal assistant {insert name here}")
-    speak("Loading your AI personal assistant")
-    greet()
 
-    while True:
-        speak("Hello how can I help?")
-        statement = get_user_command().lower()
-        if statement == 0:
-            continue
+class Window(Frame):
+    def __init__(self, master, **kw):
+        super().__init__(master, **kw)
+        self.master = master
+        master.title("AI rev 0.1")
+        a = Label(master, text="try saying *what can you do*")
+        a.pack(side="top")
+        Button(master, text="listen", width=100, relief="groove", command=self.main).pack(side="bottom")
 
-        run_commands(statement)
+    def main(self):
+        command = get_command(self)
+        pass
 
-        if "good bye" in statement or "ok bye" in statement:
-            # create a sleeping function here for it too sleep but not turn off
-            pass
 
-        elif 'shut down' or 'goodnight' in statement:
-            speak('your personal assistant <name> is shutting down,Good bye')
-            print('your personal assistant <name> is shutting down,Good bye')
-            break
+root = Tk()
+app = Window(root)
+root.geometry("300x50")
+root.mainloop()
