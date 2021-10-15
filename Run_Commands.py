@@ -7,12 +7,12 @@ def run_command(command):
     if command == "What can you do":
         pass
 
-    A = ["hi", "hello", "hey", "hai", "hey dream""hi dream", "hello dream"]
+    A = ["hi", "hello", "hey", "hai", "hey dream", "hi dream", "hello dream"]
     if command in A:
        greet()
 
     if speech == "who are you":
-        speak("i'm dream")
+        speak("I'm insert name here")
         speak("your personal assistant")
 
     B = ["what day is it", "what day is today", "what day is this"]
