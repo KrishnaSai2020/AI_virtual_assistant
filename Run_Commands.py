@@ -39,7 +39,7 @@ def run_command(command):
     if speech[0:9] == "Wikipedia":
         search_wiki(speech[10:])
 
-    E = ["bye", "bye dream", "shutdown", "quit"]
+    E = ["bye", "bye", "shutdown", "quit", "goodbye", "Goodbye"]
     if speech in C:
         shut()
     else:
